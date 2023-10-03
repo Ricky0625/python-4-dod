@@ -12,7 +12,7 @@ def outer(x: int | float, function) -> object:
 
     """
     to demonstrate closure. a closure is a function that remember the
-    environment in which it was created, including the variables and 
+    environment in which it was created, including the variables and
     values available at that time. it can be access and use these
     variables even after the outer function that created it has
     finished executing.
@@ -20,6 +20,7 @@ def outer(x: int | float, function) -> object:
 
     # local of outer, this will always be 0 when outer() is called
     count = 0
+
     def inner() -> float:
         """
         when this function returns from outer, it remembers the value of

@@ -5,6 +5,7 @@ def callLimit(limit: int):
     """
 
     count = 0
+
     def callLimiter(function):
         """decorator function, use function closures"""
         def limit_function(*args: any, **kwds: any):
