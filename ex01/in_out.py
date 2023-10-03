@@ -1,8 +1,10 @@
 def square(x: int | float) -> int | float:
+    """square da x"""
     return x * x
 
 
 def pow(x: int | float) -> int | float:
+    """pow da x"""
     return x ** x
 
 
@@ -18,14 +20,11 @@ def outer(x: int | float, function) -> object:
 
     # local of outer, this will always be 0 when outer() is called
     count = 0
-
     def inner() -> float:
-
         """
         when this function returns from outer, it remembers the value of
         x & count
         """
-
         # make the count variable we use here not local in inner() only
         nonlocal count
         count += 1
