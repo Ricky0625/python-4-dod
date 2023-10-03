@@ -6,11 +6,16 @@ def callLimit(limit: int):
 
     count = 0
     def callLimiter(function):
-        """decorator function"""
+        """decorator function, use function closures"""
         def limit_function(*args: any, **kwds: any):
+            """a wrapper. by accepting args and kwargs, the
+            decorator can work with functions that have diff
+            numbers and types of arguments"""
             nonlocal count
             if count < limit:
-                res = function(*args, **kwds)
+                # make sure that the func receives the same arguments
+                # it was originally called with
+                res = function(*args, **kwds)  # unpack args and kwargs
                 count += 1
                 return res
             else:
