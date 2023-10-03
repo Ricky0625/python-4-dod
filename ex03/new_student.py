@@ -8,6 +8,14 @@ def generate_id() -> str:
     return "".join(random.choices(string.ascii_lowercase, k=15))
 
 
+"""
+About data class:
+1. Auto generate boilerplate code: __init__, __repr__, __str__, etc.
+2. Need to provide type annotation while specify class attributes
+3. field() - a factory function used to specify additional info about
+             the fields of a dataclass
+"""
+
 @dataclass
 class Student:
 
