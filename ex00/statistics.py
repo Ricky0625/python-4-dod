@@ -28,14 +28,6 @@ def is_num(arg):
     return isinstance(arg, (int, float)) and not isinstance(arg, bool)
 
 
-def calculate_squared_diff_sum(data: tuple) -> float:
-
-    """calculate the sum of squared difference"""
-
-    mean = calculate_mean(data)
-    return sum((x - mean) ** 2 for x in data)
-
-
 def calculate_mean(data: tuple) -> float:
 
     """calculate mean"""
@@ -50,7 +42,7 @@ def calculate_median(data: tuple) -> float:
     n = len(data)
 
     # if number of data is odd, return the middle value
-    if n % 2:
+    if n % 2 != 0:
         return data[n // 2]
 
     # if number of data is even, return the average fo the middle two value
@@ -63,8 +55,15 @@ def calculate_quartile(data: tuple) -> list[float]:
 
     """calculate quartile, 25% & 75% only"""
 
-    q1 = float(data[len(data) // 4])
-    q3 = float(data[len(data) // 4 * 3])
+    n = len(data)
+
+    # if the number of data is even, return average
+    if n % 2 == 0:
+        q1 = float(data[n // 4 - 1] + data[n // 4]) / 2
+        q3 = float(data[n // 4 * 3 - 1] + data[n // 4 * 3]) / 2
+    else:
+        q1 = float(data[n // 4])
+        q3 = float(data[n // 4 * 3])
     return [q1, q3]
 
 
@@ -78,8 +77,10 @@ def calculate_std_deviation(data: tuple) -> float:
 def calculate_variance(data: tuple) -> float:
 
     """calculate variance"""
+    mean = calculate_mean(data)
+    squared_diff_sum = sum((x - mean) ** 2 for x in data)
 
-    return calculate_squared_diff_sum(data) / len(data)
+    return squared_diff_sum / len(data)
 
 
 def ft_statistics(*args: any, **kwargs: any) -> None:
